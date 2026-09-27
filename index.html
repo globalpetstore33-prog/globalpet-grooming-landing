@@ -68,7 +68,6 @@ input,select{height:48px;padding:0 14px;border:1.5px solid #9DB0CF;border-radius
 .hero-r:before{content:"";position:absolute;inset:40px 0;border-radius:230px 230px 32px 32px;background:var(--tint)}
 .phone{position:relative;width:340px;aspect-ratio:9/16;border-radius:32px;overflow:hidden;border:6px solid #fff;box-shadow:0 24px 60px rgba(27,36,51,.25);background:#13213A}
 .phone video{width:100%;height:100%;object-fit:cover}
-.vcity{position:absolute;left:22.8%;top:8.85%;width:54.4%;height:11.9%;background:#E5E5E5;display:none;align-items:center;justify-content:center;font:700 40px Arial,Helvetica,sans-serif;color:#CF2E3A;white-space:nowrap;overflow:hidden;pointer-events:none}
 .vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;padding:14px 22px;border:0;border-radius:999px;background:rgba(19,33,58,.88);color:#fff;font:700 17px system-ui,sans-serif;cursor:pointer}
 .vplay[hidden]{display:none}
 .slides{position:absolute;inset:0;background:#13213A}.slides[hidden]{display:none}
@@ -211,8 +210,7 @@ footer .ig{color:var(--orange-l);font-weight:600}
  .hero .row .btn{flex:1}
  .city-pick input,.city-pick select{min-width:0;flex:1 1 140px}
  .phone{width:min(300px,78vw)}
- .vcity{font-size:32px}
- .float{display:none}
+  .float{display:none}
  .visit-g{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:70%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
  .vt{scroll-snap-align:start}
  .services{grid-template-columns:repeat(2,minmax(0,1fr));padding:24px 16px}
@@ -290,7 +288,6 @@ footer .ig{color:var(--orange-l);font-weight:600}
 <div class="phone">
 <video class="js-video" data-src="grooming.mp4" poster="poster.webp" muted loop playsinline webkit-playsinline controls preload="none" aria-label="Global Pet groomer grooming a Golden Retriever at a customer's home"></video>
 <div class="slides js-slides" hidden aria-label="Grooming at a customer's home"><img src="slide0.webp" alt="" loading="lazy" decoding="async"><img src="slide1.webp" alt="" loading="lazy" decoding="async"><img src="slide2.webp" alt="" loading="lazy" decoding="async"><img src="slide3.webp" alt="" loading="lazy" decoding="async"><img src="slide4.webp" alt="" loading="lazy" decoding="async"><img src="slide5.webp" alt="" loading="lazy" decoding="async"><img src="slide6.webp" alt="" loading="lazy" decoding="async"><img src="slide7.webp" alt="" loading="lazy" decoding="async"><img src="slide8.webp" alt="" loading="lazy" decoding="async"><img src="slide9.webp" alt="" loading="lazy" decoding="async"></div>
-<div class="vcity js-vcity"></div>
 <button type="button" class="vplay js-vplay" hidden><svg class="i" style="width:26px;height:26px;fill:currentColor"><use href="#i-play"/></svg>Tap to play</button>
 </div>
 <div class="float f1"><svg class="i" style="color:#8A3A0E"><use href="#i-heart"/></svg><div><b>Spa Bath ₹999</b><small>Our most booked service · 5/5</small></div></div>
@@ -481,9 +478,6 @@ footer .ig{color:var(--orange-l);font-weight:600}
     document.querySelectorAll('.js-city-up').forEach(function(el){el.textContent=state.city?state.city:'across 50+ cities';});
     document.querySelectorAll('.js-wa1').forEach(function(el){el.href=wa('6261794381');});
     document.querySelectorAll('.js-wa2').forEach(function(el){el.href=wa('8223092667');});
-    var v=document.querySelector('.js-vcity');
-    v.textContent=state.city; v.style.display=state.city?'flex':'none';
-    v.style.fontSize=(state.city.length<=6?'':state.city.length<=9?'28px':'22px');
     var list=(state.city&&CITIES.indexOf(state.city)<0?[state.city]:[]).concat(CITIES);
     
     
