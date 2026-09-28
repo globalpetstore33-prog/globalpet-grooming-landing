@@ -230,6 +230,14 @@ footer .ig{color:var(--orange-l);font-weight:600}
  body{padding-bottom:76px}
 }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2601589800187989');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2601589800187989&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -528,6 +536,16 @@ footer .ig{color:var(--orange-l);font-weight:600}
       new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ onSeen(); if(v.paused&&!fell) tryPlay(); } }); },{rootMargin:'300px 0px',threshold:0}).observe(v);
     } else { onSeen(); }
   })();
+  // Meta Pixel: track booking and WhatsApp/call clicks
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a||!window.fbq) return;
+    var h=a.getAttribute('href')||''; var p={city:state.city||'unknown'};
+    var card=a.closest('.card'); if(card){ var n=card.querySelector('h3'); if(n) p.content_name=n.textContent+' ('+state.pet+')'; }
+    if(/wa\.me|whatsapp/i.test(h)) fbq('track','Contact',Object.assign({method:'whatsapp'},p));
+    else if(/^tel:/i.test(h)) fbq('track','Contact',Object.assign({method:'call'},p));
+    else if(/globalpetgrooming\.com\/services\/pet-grooming/i.test(h)) fbq('track','Lead',p);
+    else if(/apps\.apple\.com|play\.google\.com/i.test(h)) fbq('trackCustom','AppDownloadClick',p);
+  },true);
   renderCity();
   // Auto-detect the visitor's city from their internet connection (no permission popup)
   function detect(){
